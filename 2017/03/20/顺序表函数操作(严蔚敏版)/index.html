@@ -1,0 +1,807 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="-数据结构," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="实现线性表多种函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="顺序表的操作（严蔚敏）">
+<meta property="og:url" content="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/index.html">
+<meta property="og:site_name" content="yodiGo">
+<meta property="og:description" content="实现线性表多种函数">
+<meta property="og:updated_time" content="2017-03-20T06:36:11.302Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="顺序表的操作（严蔚敏）">
+<meta name="twitter:description" content="实现线性表多种函数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '0XHJNLJKH5',
+      apiKey: 'df8136b265109307bfbbe5576287d635',
+      indexName: 'Hexo',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/"/>
+
+
+
+
+
+  <title> 顺序表的操作（严蔚敏） | yodiGo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5d49c13ad5a2101a7de8bff11a77c109";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yodiGo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">废顶+_+</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="yodiGo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yodiGo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                顺序表的操作（严蔚敏）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T14:11:33+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习/" itemprop="url" rel="index">
+                    <span itemprop="name">学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>实现线性表多种函数</strong></p>
+<a id="more"></a>
+<p>‘’’<br>/<em>main2-1</em>/ </p>
+<p>#include <stdio.h></stdio.h></p>
+<p>#include <stdlib.h>   //包含了exit函数 </stdlib.h></p>
+<p>#define OVERFLOW -2 </p>
+<p>#define TURE 1</p>
+<p>#define FLASE 0</p>
+<p>#define OK 1</p>
+<p>#define ERROR 0</p>
+<p>#define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量 </p>
+<p>#define LIST_INCREMENT 2<br>typedef int ElemType;<br>typedef int Status;  //定义结构体 </p>
+<p>Status ListInsert(struct Sqlist &amp;L, int a, ElemType j);<br>void InitList(Sqlist &amp;L);<br>void print1(ElemType m);<br>void ListTraverse(struct Sqlist L, void (<em> print1)(ElemType ));  // 对表L中每个元素调用print1<br>Status ListEmpty(Sqlist L);<br>void ClearList(Sqlist &amp;L);<br>Status GetElem(Sqlist &amp;L, int i, ElemType &amp;e);<br>Status LocateElem(Sqlist L, ElemType e, Status (</em> equal)(ElemType ,ElemType));<br>Status equal(ElemType ,ElemType );<br>Status PriorElem(Sqlist L,ElemType k,ElemType &amp;t);<br>int ListLength (Sqlist L);<br>Status NextElem (Sqlist L, ElemType cur_e, ElemType &amp;next_e);<br>Status ListDelete(Sqlist &amp;L, int i, ElemType &amp;e);<br>void DestroyList(Sqlist &amp;L);<br>void db1(ElemType &amp;c);<br>void ListTraverse2(struct Sqlist L, void (* db1)(ElemType &amp;));</p>
+<p>struct Sqlist<br>{<br>    ElemType * elem; //储存空间基址<br>    int length;  //当前长度<br>    int listsize;   //当前分配的存储容量，以sizeof（ElemType）为单位<br>}; </p>
+<p>int main (void)<br>{<br>    struct Sqlist L;<br>    ElemType e, e0;<br>    Status i;    //等价于int i；<br>    int k, j;<br>    InitList(L);<br>    printf(“初始化L后，L.length = %d,L.listsize = %d,L.elem = %u\n”,L.length ,L.listsize, L.elem);   //%u是输入输出格式说明符,表示按unsigned int格式输入或输出数据<br>    for(j=1; j&lt;=5; j++)<br>        i = ListInsert(L, 1 ,j);  //在L的表头插入j<br>    printf(“在L的表头依次插入1~5后，<em>L.elem = “);<br>    for(j = 1; j &lt;= 5; j++)<br>        printf(“%d”,</em>(L.elem+j-1));  //依次输出表L中的元素<br>    printf(“\n调用ListTraverse()函数，依次输出表L中的元素：”);<br>    ListTraverse(L, print1);  //依次对表L中的元素调用print1函数（输出元素值） //  没有改变线性表L里的属性值，不必传指针类型，传变量类型即可<br>    i = ListEmpty(L);   //  检测表L是否为空<br>    printf(“L.length = %d,L.listsize = %d(不变),”,L.length, L.listsize);<br>    printf(“L.elem = %u(不变),L是否为空？i = %d\n”,L.elem, i);<br>    ClearList(L);   //清空表L </p>
+<pre><code>i = ListEmpty(L);   //再次检测表L是否为空
+printf(&quot;清空L后，L.length = %d,L.listsize = %d,&quot;,L.length, L.listsize);
+printf(&quot;L.elem = %u,L是否为空？i = %d\n&quot;,L.elem, i);
+for(j=1; j&lt;=10; j++)
+    ListInsert(L,j,j); //在L的表尾插入j
+printf(&quot;在L的表尾依次插入1~10后，L=&quot;);
+ListTraverse(L,print1);  //依次输出表L中的元素
+printf(&quot;L.length = %d,L.listsize = %d,L.elem = %u\n&quot;,L.length ,L.listsize, L.elem);
+ListInsert(L,1,0);  //在表头插入0这个元素，增加存储空间 
+printf(&quot;在表头插入0后，L.length = %d,L.listsize = %d(改变),L.elem = %u(可能改变)\n&quot;,L.length, L.listsize, L.elem);
+GetElem(L,5,e);   //把第五个元素赋给e 
+printf(&quot;第五个元素的值为%d\n&quot;,e);
+for(j=10; j&lt;=11; j++)
+{
+    k = LocateElem(L, j, equal);  //查找表l中与j相等的元素，并将其位序赋给k 
+    if(k)  //k不为0，说明有符合条件的元素存在 
+        printf(&quot;第%d个元素的值是%d\n&quot;,k, j);
+    else   //k=0，没有符合条件的元素
+        printf(&quot;没有值为%d的元素\n&quot;,j); 
+}
+for(j=3; j&lt;4; j++)
+{
+    k = LocateElem(L, j*j, equal);   //查找表中是否有与j平方相等的数据 
+    if(k)  //k不为0，说明有符合条件的元素存在 
+        printf(&quot;第%d个元素的值是%d的平方\n&quot;,k, j);
+    else   //k=0，没有符合条件的元素
+        printf(&quot;没有值为%d平方的元素\n&quot;,j); 
+}
+for(j=1; j&lt;2; j++)
+{
+    GetElem(L, j, e0); //把表中第j哥元素赋给e0 
+    i = PriorElem(L,e0,e);  //求e0的前驱，如果成功，赋值给e
+    if(i==ERROR)  //操作失败
+        printf(&quot;元素%d无前驱，&quot;,e0);
+    else
+        printf(&quot;元素%d的前驱为%d\n&quot;,e0,e); 
+} 
+for(j = ListLength(L) - 1; j &lt;= ListLength(L); j++)
+{
+    GetElem(L, j, e0);  //将表中的第j个元素赋给e0
+    i = NextElem(L, e0, e);   //求e0的后继，如果成功将值赋给e
+    if(i == ERROR)
+    {
+        printf(&quot;元素%d无后继\n&quot;,e0);
+
+    } 
+    else
+        printf(&quot;元素%d的后继为%d,&quot;,e0, e);
+}
+k = ListLength(L);
+for(j = k + 1; j &gt;= k; j--)
+{
+    i = ListDelete(L, j, e); //删除第j个元素
+    if(i == ERROR)
+        printf(&quot;删除第%d个元素失败。&quot;,j);
+    else
+        printf(&quot;删除第%d个元素成功，其值为%d&quot;, j, e);
+
+}
+ListTraverse2(L, db1); //对元素调用db1函数，元素值乘2
+printf(&quot;L的元素值加倍后，L = &quot;);
+ListTraverse(L, print1);  //输出L的元素值 
+DestroyList(L);
+printf(&quot;销毁L后，L.length = %d, L.listsize = %d, L.elem = %u\n&quot;,L.length, L.listsize, L.elem);
+</code></pre><p>}<br>Status ListDelete(Sqlist &amp;L, int i, ElemType &amp;e)  //删除第i个元素并用e返回其值<br>{<br>    ElemType <em>p, </em>q;<br>    if(i<1 ||="" i="">L.length)<br>        return ERROR;<br>    else<br>        p = L.elem + i - 1;  //q指向被删除的元素<br>        e = <em>p;  //被删除的元素值赋给e<br>    q = L.elem + L.length + 1;<br>    for(p++; p&lt;+q; p++) 
+        </em>(p - 1) = *p;<br>        L.length–;<br>    return OK;</1></p>
+<p>}<br>void ListTraverse2(struct Sqlist L, void (<em> db1)(ElemType &amp;))  /</em>指向函数的指针<br>                                                                对表L中每个元素调用print1 <em>/<br>{<br>    ElemType </em>p = L.elem;   //p指向第一个元素<br>    int i;<br>    for(i = 1; i &lt;= L.length; i++)<br>        db1(<em>p++);<br>    printf(“\n”);<br>}<br>void db1(ElemType &amp;c)<br>{<br>    c </em>= 2;<br>}<br>void DestroyList(Sqlist &amp;L)<br>{<br>    free(L.elem);<br>    L.elem = NULL;<br>    L.length = 0;<br>    L.listsize = 0;<br>}<br>int ListLength (Sqlist L)  //返回L中数据元素的个数<br>{<br>    return L.length;<br>}<br>Status NextElem (Sqlist L, ElemType cur_e, ElemType &amp;next_e)<br>/<em><br>    若cur_e是L中的元素，且不是最后一个，则用next_e返回他的后继<br>    否则操作失败，next_e无定义 
+</em>/<br>{<br>    int i = 1;<br>    ElemType <em>p = L.elem;   //p指向第一个元素<br>    while(i &lt;= L.length &amp;&amp; </em>p != cur_e)  //i未到表尾且没有找到值为cur_e的元素<br>    {<br>        p++;  //p指向下一个元素<br>        i++;   //计数加1<br>    }<br>    if(i == L.length)<br>        return ERROR;  //操作失败<br>    else //找到值为cur_e的元素，并由p指向其<br>    {<br>        next_e = *++p;  //p指向下一个元素即后继<br>        return OK;<br>    }<br>} </p>
+<p>Status PriorElem(Sqlist L,ElemType k,ElemType &amp;t)<br>{<br>    int i = 2;<br>    ElemType <em> p = L.elem + 1; //p指向第二个元素<br>    while(i&lt;=L.length &amp;&amp; </em> p != k)   //在表长范围内且未找到eo的元素<br>    {<br>        p++;<br>        i++;<br>    }<br>    if(i&gt;L.length)<br>        return ERROR;<br>    else  //找到了值为e0的元素<br>    {<br>        t = *p– ;<br>        return OK;</p>
+<pre><code>} 
+</code></pre><p>}<br>Status equal(ElemType a,ElemType s)<br>{<br>    if(a == s)<br>        return TURE;<br>    else<br>        return FLASE;<br>}<br>Status LocateElem(Sqlist L, ElemType e, Status (<em> equal)(ElemType ,ElemType))<br>{<br>    int i = 1;<br>    ElemType </em> p = L.elem;  //p的初始值为第一个元素地址<br>    while(i&lt;=L.length &amp;&amp; !equal(*p++,e)) //i未超出表的范围并且没找到符合条件的数据<br>        i++;<br>    if(i&lt;=L.length)  //找到了符合条件的数据<br>        return i;  //返回位序i<br>    else<br>        return 0;<br>}<br>Status GetElem(Sqlist &amp;L, int i, ElemType &amp;e) //要改变e的值必须发送地址<br>{</p>
+<pre><code>if(i&lt;1 || i&gt;L.length)  //i不在表L的范围内
+    return ERROR;
+else
+    e = *(L.elem + i - 1);
+return OK;
+</code></pre><p>}<br>void ClearList(Sqlist &amp;L)    //将表l置为空表<br>{<br>    L.length = 0;<br>}<br>Status ListEmpty(Sqlist L)  //如果L为空表，则返回TURE 否则返回FLASE<br>{<br>    if(L.length == 0)<br>        return     TURE;<br>    else<br>        return FLASE;<br>}    </p>
+<p>void print1(ElemType m)   //print1函数<br>{<br>    printf(“%d “,m);<br>}<br>void ListTraverse(struct Sqlist L, void (<em> print1)(ElemType ) )  /</em>指向函数的指针<br>                                                                对表L中每个元素调用print1 <em>/<br>{<br>    ElemType </em>p = L.elem;   //p指向第一个元素<br>    int i;<br>    for(i = 1; i &lt;= L.length; i++)<br>        print1(*p++);<br>    printf(“\n”);<br>} </p>
+<p>Status ListInsert(struct Sqlist &amp;L, ElemType a, ElemType j)<br>{<br>    ElemType <em>q, </em>p, <em>newbase;<br>    if(a &lt; 1 || a &gt; L.length + 1)   //a值不合法<br>        return ERROR;<br>    if(L.length == L.listsize)  //如果存储空间已满，则需要开辟新的空间<br>    {<br>        newbase = (ElemType </em>)realloc(L.elem, (L.listsize + LIST_INCREMENT) * sizeof(ElemType));  //为l.elem 追加长度<br>        if (!newbase)<br>            exit(OVERFLOW);  //分配失败<br>        L.elem = newbase;<br>        L.listsize += LIST_INCREMENT; //增加存储容量</p>
+<pre><code>}
+q = L.elem + a - 1;   //q为插入位置 
+for(p = L.elem + L.length - 1; p &gt;= q; --p)   //插入位置及以后的数据全部往后移，由表尾元素开始 
+{
+    *(p + 1) = *p;
+}
+*q = j;
+L.length++;  //表长加一 
+return OK;
+</code></pre><p>}</p>
+<p>void InitList(Sqlist &amp;L)   //算法2.3，构造一个空的顺序线性表L<br>{<br>    L.elem = (ElemType <em> )malloc(LIST_INIT_SIZE </em> sizeof(ElemType));<br>    if(!L.elem)  //存储空间分配失败<br>        exit(OVERFLOW);<br>    /<em><br>    所在头文件：stdlib.h<br>    功能: 关闭所有文件，终止正在执行的进程。<br>    exit(x)  x==0表示正常退出，x!=0表示非正常退出 
+    </em>/<br>    else<br>        L.length = 0; //空表长度为0<br>        L.listsize =  LIST_INIT_SIZE; //初始化存储容量<br>}</p>
+<p>‘’’</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># -数据结构</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="yodiGo" />
+          <p class="site-author-name" itemprop="name">yodiGo</p>
+           
+              <p class="site-description motion-element" itemprop="description">I pay no attention whatever to anybody's praise or blame. I simply follow my own feelings.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yodiGo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
