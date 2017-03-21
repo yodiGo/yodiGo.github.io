@@ -99,16 +99,16 @@
 
 
 
-<meta name="description" content="实现线性表多种函数">
+<meta name="description" content="实现线性表算法2.7">
 <meta property="og:type" content="article">
-<meta property="og:title" content="顺序表的操作（严蔚敏）">
-<meta property="og:url" content="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/index.html">
+<meta property="og:title" content="顺序表的操作2 实现算法2.7（严蔚敏）">
+<meta property="og:url" content="https://wentuotuo.com/2017/03/21/实现线性表算法2.7/index.html">
 <meta property="og:site_name" content="yodiGo">
-<meta property="og:description" content="实现线性表多种函数">
-<meta property="og:updated_time" content="2017-03-21T11:25:55.005Z">
+<meta property="og:description" content="实现线性表算法2.7">
+<meta property="og:updated_time" content="2017-03-21T13:07:23.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="顺序表的操作（严蔚敏）">
-<meta name="twitter:description" content="实现线性表多种函数">
+<meta name="twitter:title" content="顺序表的操作2 实现算法2.7（严蔚敏）">
+<meta name="twitter:description" content="实现线性表算法2.7">
 
 
 
@@ -136,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/"/>
+  <link rel="canonical" href="https://wentuotuo.com/2017/03/21/实现线性表算法2.7/"/>
 
 
 
 
 
-  <title> 顺序表的操作（严蔚敏） | yodiGo </title>
+  <title> 顺序表的操作2 实现算法2.7（严蔚敏） | yodiGo </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -301,7 +301,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/">
+    <link itemprop="mainEntityOfPage" href="https://wentuotuo.com/2017/03/21/实现线性表算法2.7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="yodiGo">
@@ -322,7 +322,7 @@
             
             
               
-                顺序表的操作（严蔚敏）
+                顺序表的操作2 实现算法2.7（严蔚敏）
               
             
           </h1>
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T14:11:33+08:00">
-                2017-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-21T21:07:23+08:00">
+                2017-03-21
               </time>
             
 
@@ -395,99 +395,26 @@
       
 
       
-        <p><strong>实现线性表多种函数</strong></p>
+        <p><strong>实现线性表算法2.7</strong></p>
 <a id="more"></a>
-<p>‘’’<br>/<em>main2-1</em>/ </p>
-<p>#include <stdio.h></stdio.h></p>
-<p>#include <stdlib.h>   //包含了exit函数 </stdlib.h></p>
-<p>#define OVERFLOW -2 </p>
-<p>#define TURE 1</p>
-<p>#define FLASE 0</p>
-<p>#define OK 1</p>
-<p>#define ERROR 0</p>
-<p>#define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量 </p>
-<p>#define LIST_INCREMENT 2<br>typedef int ElemType;<br>typedef int Status;  </p>
-<p>Status ListInsert(struct Sqlist &amp;L, int a, ElemType j);<br>void InitList(Sqlist &amp;L);<br>void print1(ElemType m);<br>void ListTraverse(struct Sqlist L, void (<em> print1)(ElemType ));  // 对表L中每个元素调用print1<br>Status ListEmpty(Sqlist L);<br>void ClearList(Sqlist &amp;L);<br>Status GetElem(Sqlist &amp;L, int i, ElemType &amp;e);<br>Status LocateElem(Sqlist L, ElemType e, Status (</em> equal)(ElemType ,ElemType));<br>Status equal(ElemType ,ElemType );<br>Status PriorElem(Sqlist L,ElemType k,ElemType &amp;t);<br>int ListLength (Sqlist L);<br>Status NextElem (Sqlist L, ElemType cur_e, ElemType &amp;next_e);<br>Status ListDelete(Sqlist &amp;L, int i, ElemType &amp;e);<br>void DestroyList(Sqlist &amp;L);<br>void db1(ElemType &amp;c);<br>void ListTraverse2(struct Sqlist L, void (* db1)(ElemType &amp;));</p>
-<p>struct Sqlist<br>{<br>    ElemType * elem; //储存空间基址<br>    int length;  //当前长度<br>    int listsize;   //当前分配的存储容量，以sizeof（ElemType）为单位<br>}; </p>
-<p>int main (void)<br>{<br>    struct Sqlist L;<br>    ElemType e, e0;<br>    Status i;    //等价于int i；<br>    int k, j;<br>    InitList(L);<br>    printf(“初始化L后，L.length = %d,L.listsize = %d,L.elem = %u\n”,L.length ,L.listsize, L.elem);   //%u是输入输出格式说明符,表示按unsigned int格式输入或输出数据<br>    for(j=1; j&lt;=5; j++)<br>        i = ListInsert(L, 1 ,j);  //在L的表头插入j<br>    printf(“在L的表头依次插入1~5后，<em>L.elem = “);<br>    for(j = 1; j &lt;= 5; j++)<br>        printf(“%d”,</em>(L.elem+j-1));  //依次输出表L中的元素<br>    printf(“\n调用ListTraverse()函数，依次输出表L中的元素：”);<br>    ListTraverse(L, print1);  //依次对表L中的元素调用print1函数（输出元素值） //  没有改变线性表L里的属性值，不必传指针类型，传变量类型即可<br>    i = ListEmpty(L);   //  检测表L是否为空<br>    printf(“L.length = %d,L.listsize = %d(不变),”,L.length, L.listsize);<br>    printf(“L.elem = %u(不变),L是否为空？i = %d\n”,L.elem, i);<br>    ClearList(L);   //清空表L </p>
-<pre><code>i = ListEmpty(L);   //再次检测表L是否为空
-printf(&quot;清空L后，L.length = %d,L.listsize = %d,&quot;,L.length, L.listsize);
-printf(&quot;L.elem = %u,L是否为空？i = %d\n&quot;,L.elem, i);
-for(j=1; j&lt;=10; j++)
-    ListInsert(L,j,j); //在L的表尾插入j
-printf(&quot;在L的表尾依次插入1~10后，L=&quot;);
-ListTraverse(L,print1);  //依次输出表L中的元素
-printf(&quot;L.length = %d,L.listsize = %d,L.elem = %u\n&quot;,L.length ,L.listsize, L.elem);
-ListInsert(L,1,0);  //在表头插入0这个元素，增加存储空间 
-printf(&quot;在表头插入0后，L.length = %d,L.listsize = %d(改变),L.elem = %u(可能改变)\n&quot;,L.length, L.listsize, L.elem);
-GetElem(L,5,e);   //把第五个元素赋给e 
-printf(&quot;第五个元素的值为%d\n&quot;,e);
-for(j=10; j&lt;=11; j++)
+<p>‘’’c</p>
+<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <stdio.h></stdio.h></h1><h1 id="include-包含了exit函数"><a href="#include-包含了exit函数" class="headerlink" title="include    //包含了exit函数"></a>include <stdlib.h>   //包含了exit函数</stdlib.h></h1><h1 id="define-OVERFLOW-2"><a href="#define-OVERFLOW-2" class="headerlink" title="define OVERFLOW -2"></a>define OVERFLOW -2</h1><h1 id="define-TURE-1"><a href="#define-TURE-1" class="headerlink" title="define TURE 1"></a>define TURE 1</h1><h1 id="define-FLASE-0"><a href="#define-FLASE-0" class="headerlink" title="define FLASE 0"></a>define FLASE 0</h1><h1 id="define-OK-1"><a href="#define-OK-1" class="headerlink" title="define OK 1"></a>define OK 1</h1><h1 id="define-ERROR-0"><a href="#define-ERROR-0" class="headerlink" title="define ERROR 0"></a>define ERROR 0</h1><h1 id="define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量"><a href="#define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量" class="headerlink" title="define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量"></a>define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量</h1><h1 id="define-LIST-INCREMENT-2"><a href="#define-LIST-INCREMENT-2" class="headerlink" title="define LIST_INCREMENT 2"></a>define LIST_INCREMENT 2</h1><p>typedef int ElemType;    //分号不能丢<br>typedef int Status; </p>
+<p>void print1(ElemType a);<br>Status ListInsert(struct Sqlist &amp;L, ElemType a, ElemType j);<br>void ListTraverse(Sqlist &amp;L, void(* print1)(ElemType ));<br>void InitList(Sqlist &amp;L);<br>void MergeList(Sqlist La, Sqlist Lb, Sqlist &amp;Lc);</p>
+<p>struct Sqlist<br>{<br>    ElemType * elem; //储存空间基址<br>    int length;  //当前长度<br>    int listsize;   //当前分配的存储容量，以sizeof（ElemType）为单位<br>};</p>
+<p>int main(void)<br>{<br>    Sqlist La, Lb, Lc;<br>    int j;<br>    InitList(La);  //创建空表La<br>    for(j = 1; j &lt;= 5; j++)<br>    {<br>        ListInsert(La, j, j);    //在表中插入5个元素依次为1，2，3，4，5<br>    }<br>    printf(“La = “);<br>    ListTraverse(La, print1);  //对每个元素调用print1函数输出La的值     </p>
+<pre><code>InitList(Lb);   //创建空表b
+for(j = 1; j &lt;= 5; j++)
 {
-    k = LocateElem(L, j, equal);  //查找表l中与j相等的元素，并将其位序赋给k 
-    if(k)  //k不为0，说明有符合条件的元素存在 
-        printf(&quot;第%d个元素的值是%d\n&quot;,k, j);
-    else   //k=0，没有符合条件的元素
-        printf(&quot;没有值为%d的元素\n&quot;,j); 
+    ListInsert(Lb, j, j*2);    //在表中插入5个元素依次为2，4，6，8，10 
 }
-for(j=3; j&lt;4; j++)
-{
-    k = LocateElem(L, j*j, equal);   //查找表中是否有与j平方相等的数据 
-    if(k)  //k不为0，说明有符合条件的元素存在 
-        printf(&quot;第%d个元素的值是%d的平方\n&quot;,k, j);
-    else   //k=0，没有符合条件的元素
-        printf(&quot;没有值为%d平方的元素\n&quot;,j); 
-}
-for(j=1; j&lt;2; j++)
-{
-    GetElem(L, j, e0); //把表中第j哥元素赋给e0 
-    i = PriorElem(L,e0,e);  //求e0的前驱，如果成功，赋值给e
-    if(i==ERROR)  //操作失败
-        printf(&quot;元素%d无前驱，&quot;,e0);
-    else
-        printf(&quot;元素%d的前驱为%d\n&quot;,e0,e); 
-} 
-for(j = ListLength(L) - 1; j &lt;= ListLength(L); j++)
-{
-    GetElem(L, j, e0);  //将表中的第j个元素赋给e0
-    i = NextElem(L, e0, e);   //求e0的后继，如果成功将值赋给e
-    if(i == ERROR)
-    {
-        printf(&quot;元素%d无后继\n&quot;,e0);
+printf(&quot;Lb = &quot;);  //输出表Lb的内容 
+ListTraverse(Lb, print1);
 
-    } 
-    else
-        printf(&quot;元素%d的后继为%d,&quot;,e0, e);
-}
-k = ListLength(L);
-for(j = k + 1; j &gt;= k; j--)
-{
-    i = ListDelete(L, j, e); //删除第j个元素
-    if(i == ERROR)
-        printf(&quot;删除第%d个元素失败。&quot;,j);
-    else
-        printf(&quot;删除第%d个元素成功，其值为%d&quot;, j, e);
-
-}
-ListTraverse2(L, db1); //对元素调用db1函数，元素值乘2
-printf(&quot;L的元素值加倍后，L = &quot;);
-ListTraverse(L, print1);  //输出L的元素值 
-DestroyList(L);
-printf(&quot;销毁L后，L.length = %d, L.listsize = %d, L.elem = %u\n&quot;,L.length, L.listsize, L.elem);
-</code></pre><p>}<br>Status ListDelete(Sqlist &amp;L, int i, ElemType &amp;e)  //删除第i个元素并用e返回其值<br>{<br>    ElemType <em>p, </em>q;<br>    if(i<1 ||="" i="">L.length)<br>        return ERROR;<br>    else<br>        p = L.elem + i - 1;  //q指向被删除的元素<br>        e = <em>p;  //被删除的元素值赋给e<br>    q = L.elem + L.length + 1;<br>    for(p++; p&lt;+q; p++) 
-        </em>(p - 1) = *p;<br>        L.length–;<br>    return OK;</1></p>
-<p>}<br>void ListTraverse2(struct Sqlist L, void (<em> db1)(ElemType &amp;))  /</em>指向函数的指针<br>                                                                对表L中每个元素调用print1 <em>/<br>{<br>    ElemType </em>p = L.elem;   //p指向第一个元素<br>    int i;<br>    for(i = 1; i &lt;= L.length; i++)<br>        db1(<em>p++);<br>    printf(“\n”);<br>}<br>void db1(ElemType &amp;c)<br>{<br>    c </em>= 2;<br>}<br>void DestroyList(Sqlist &amp;L)<br>{<br>    free(L.elem);<br>    L.elem = NULL;<br>    L.length = 0;<br>    L.listsize = 0;<br>}<br>int ListLength (Sqlist L)  //返回L中数据元素的个数<br>{<br>    return L.length;<br>}<br>Status NextElem (Sqlist L, ElemType cur_e, ElemType &amp;next_e)<br>/<em><br>    若cur_e是L中的元素，且不是最后一个，则用next_e返回他的后继<br>    否则操作失败，next_e无定义 
-</em>/<br>{<br>    int i = 1;<br>    ElemType <em>p = L.elem;   //p指向第一个元素<br>    while(i &lt;= L.length &amp;&amp; </em>p != cur_e)  //i未到表尾且没有找到值为cur_e的元素<br>    {<br>        p++;  //p指向下一个元素<br>        i++;   //计数加1<br>    }<br>    if(i == L.length)<br>        return ERROR;  //操作失败<br>    else //找到值为cur_e的元素，并由p指向其<br>    {<br>        next_e = *++p;  //p指向下一个元素即后继<br>        return OK;<br>    }<br>} </p>
-<p>Status PriorElem(Sqlist L,ElemType k,ElemType &amp;t)<br>{<br>    int i = 2;<br>    ElemType <em> p = L.elem + 1; //p指向第二个元素<br>    while(i&lt;=L.length &amp;&amp; </em> p != k)   //在表长范围内且未找到eo的元素<br>    {<br>        p++;<br>        i++;<br>    }<br>    if(i&gt;L.length)<br>        return ERROR;<br>    else  //找到了值为e0的元素<br>    {<br>        t = *p– ;<br>        return OK;</p>
-<pre><code>} 
-</code></pre><p>}<br>Status equal(ElemType a,ElemType s)<br>{<br>    if(a == s)<br>        return TURE;<br>    else<br>        return FLASE;<br>}<br>Status LocateElem(Sqlist L, ElemType e, Status (<em> equal)(ElemType ,ElemType))<br>{<br>    int i = 1;<br>    ElemType </em> p = L.elem;  //p的初始值为第一个元素地址<br>    while(i&lt;=L.length &amp;&amp; !equal(*p++,e)) //i未超出表的范围并且没找到符合条件的数据<br>        i++;<br>    if(i&lt;=L.length)  //找到了符合条件的数据<br>        return i;  //返回位序i<br>    else<br>        return 0;<br>}<br>Status GetElem(Sqlist &amp;L, int i, ElemType &amp;e) //要改变e的值必须发送地址<br>{</p>
-<pre><code>if(i&lt;1 || i&gt;L.length)  //i不在表L的范围内
-    return ERROR;
-else
-    e = *(L.elem + i - 1);
-return OK;
-</code></pre><p>}<br>void ClearList(Sqlist &amp;L)    //将表l置为空表<br>{<br>    L.length = 0;<br>}<br>Status ListEmpty(Sqlist L)  //如果L为空表，则返回TURE 否则返回FLASE<br>{<br>    if(L.length == 0)<br>        return     TURE;<br>    else<br>        return FLASE;<br>}    </p>
-<p>void print1(ElemType m)   //print1函数<br>{<br>    printf(“%d “,m);<br>}<br>void ListTraverse(struct Sqlist L, void (<em> print1)(ElemType ) )  /</em>指向函数的指针<br>                                                                对表L中每个元素调用print1 <em>/<br>{<br>    ElemType </em>p = L.elem;   //p指向第一个元素<br>    int i;<br>    for(i = 1; i &lt;= L.length; i++)<br>        print1(*p++);<br>    printf(“\n”);<br>} </p>
+MergeList(La, Lb, Lc);  //由按非递减排列的表La，Lb得到按非递减排列的Lc
+printf(&quot;Lc = &quot;);   //输出Lc的内容
+ListTraverse(Lc, print1);
+</code></pre><p>}</p>
+<p>void print1(ElemType a)   //print1函数<br>{<br>    printf(“%d “,a);<br>}</p>
 <p>Status ListInsert(struct Sqlist &amp;L, ElemType a, ElemType j)<br>{<br>    ElemType <em>q, </em>p, <em>newbase;<br>    if(a &lt; 1 || a &gt; L.length + 1)   //a值不合法<br>        return ERROR;<br>    if(L.length == L.listsize)  //如果存储空间已满，则需要开辟新的空间<br>    {<br>        newbase = (ElemType </em>)realloc(L.elem, (L.listsize + LIST_INCREMENT) * sizeof(ElemType));  //为l.elem 追加长度<br>        if (!newbase)<br>            exit(OVERFLOW);  //分配失败<br>        L.elem = newbase;<br>        L.listsize += LIST_INCREMENT; //增加存储容量</p>
 <pre><code>}
 q = L.elem + a - 1;   //q为插入位置 
@@ -498,10 +425,31 @@ for(p = L.elem + L.length - 1; p &gt;= q; --p)   //插入位置及以后的数�
 *q = j;
 L.length++;  //表长加一 
 return OK;
-</code></pre><p>}</p>
-<p>void InitList(Sqlist &amp;L)   //算法2.3，构造一个空的顺序线性表L<br>{<br>    L.elem = (ElemType <em> )malloc(LIST_INIT_SIZE </em> sizeof(ElemType));<br>    if(!L.elem)  //存储空间分配失败<br>        exit(OVERFLOW);<br>    /<em><br>    所在头文件：stdlib.h<br>    功能: 关闭所有文件，终止正在执行的进程。<br>    exit(x)  x==0表示正常退出，x!=0表示非正常退出 
+</code></pre><p>}<br>void InitList(Sqlist &amp;L)   //算法2.3，构造一个空的顺序线性表L<br>{<br>    L.elem = (ElemType <em> )malloc(LIST_INIT_SIZE </em> sizeof(ElemType));<br>    if(!L.elem)  //存储空间分配失败<br>        exit(OVERFLOW);<br>    /<em><br>    所在头文件：stdlib.h<br>    功能: 关闭所有文件，终止正在执行的进程。<br>    exit(x)  x==0表示正常退出，x!=0表示非正常退出 
     </em>/<br>    else<br>        L.length = 0; //空表长度为0<br>        L.listsize =  LIST_INIT_SIZE; //初始化存储容量<br>}</p>
-<p>‘’’</p>
+<p>void ListTraverse(Sqlist &amp;L, void(<em> print1)(ElemType ))  //不进行计算不要加&amp;<br>{<br>    ElemType </em>p = L.elem;   //p指向第一个元素<br>    int i;<br>    for(i = 1; i &lt;= L.length; i++)<br>        print1(*p++);<br>    printf(“\n”);<br>} </p>
+<p>void MergeList(Sqlist La, Sqlist Lb, Sqlist &amp;Lc)<br>/*</p>
+<ol>
+<li>已知顺序线性表La和Lb的元素值按值非递减排列</li>
+<li><p>归并La，Lb得到新的顺序线性表Lc，Lc的值也不按非递减排列（不改变表La与Lb）<br><em>/<br>{<br> ElemType </em>pa, <em>pa_last, </em>pb, <em>pb_last, </em>pc;<br> pa =La.elem;   //pa指向la的第一个元素<br> pb =Lb.elem;   // pb指向lb的第一个元素 </p>
+<p> Lc.listsize = Lc.length = La.length + Lb.length;  //不用InitList创建Lc<br> pc = Lc.elem = (ElemType <em>)malloc(Lc.listsize </em> sizeof(ElemType));</p>
+<p> if(!pc)</p>
+<pre><code>exit(OVERFLOW); 
+</code></pre><p> else</p>
+<pre><code>pa_last = La.elem + La.length - 1;  //指向最后一个元素 
+ pb_last = Lb.elem + Lb.length - 1;
+</code></pre><p> while (pa &lt;= pa_last &amp;&amp; pb &lt;= pb_last )  //表la与表lb均有元素没有被归并<br> {</p>
+<pre><code>if(*pa &lt; *pb)    //表la的冤死不大于表lb的元素 
+    *pc++ = *pa++; //将pa指向单元的值赋值给pc所指向的单元后，pa与pc分别加1 
+else
+    *pc++ = *pb++;
+</code></pre><p> }//一下像个while循环只有一个被执行<br> while(pa &lt;= pa_last)  //表lb的元素全部被归并 </p>
+<pre><code>*pc++ = *pa++;   //插入表lb剩余元素 
+</code></pre><p> while(pb &lt;= pb_last)</p>
+<pre><code>*pc++ = *pb++;
+</code></pre><p>}<br>‘’’</p>
+</li>
+</ol>
 
       
     </div>
@@ -544,15 +492,15 @@ return OK;
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/20/顺序表函数操作(严蔚敏版)/" rel="next" title="顺序表的操作（严蔚敏）">
+                <i class="fa fa-chevron-left"></i> 顺序表的操作（严蔚敏）
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/21/实现线性表算法2.7/" rel="prev" title="顺序表的操作2 实现算法2.7（严蔚敏）">
-                顺序表的操作2 实现算法2.7（严蔚敏） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -599,8 +547,17 @@ return OK;
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -673,6 +630,22 @@ return OK;
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number">1.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-包含了exit函数"><span class="nav-number">2.</span> <span class="nav-text">include    //包含了exit函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-OVERFLOW-2"><span class="nav-number">3.</span> <span class="nav-text">define OVERFLOW -2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-TURE-1"><span class="nav-number">4.</span> <span class="nav-text">define TURE 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-FLASE-0"><span class="nav-number">5.</span> <span class="nav-text">define FLASE 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-OK-1"><span class="nav-number">6.</span> <span class="nav-text">define OK 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-ERROR-0"><span class="nav-number">7.</span> <span class="nav-text">define ERROR 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量"><span class="nav-number">8.</span> <span class="nav-text">define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-LIST-INCREMENT-2"><span class="nav-number">9.</span> <span class="nav-text">define LIST_INCREMENT 2</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
