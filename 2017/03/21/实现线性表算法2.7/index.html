@@ -105,7 +105,7 @@
 <meta property="og:url" content="https://wentuotuo.com/2017/03/21/实现线性表算法2.7/index.html">
 <meta property="og:site_name" content="yodiGo">
 <meta property="og:description" content="实现线性表算法2.7">
-<meta property="og:updated_time" content="2017-03-21T13:07:23.442Z">
+<meta property="og:updated_time" content="2017-03-21T13:11:03.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序表的操作2 实现算法2.7（严蔚敏）">
 <meta name="twitter:description" content="实现线性表算法2.7">
@@ -398,7 +398,15 @@
         <p><strong>实现线性表算法2.7</strong></p>
 <a id="more"></a>
 <p>‘’’c</p>
-<h1 id="include"><a href="#include" class="headerlink" title="include "></a>include <stdio.h></stdio.h></h1><h1 id="include-包含了exit函数"><a href="#include-包含了exit函数" class="headerlink" title="include    //包含了exit函数"></a>include <stdlib.h>   //包含了exit函数</stdlib.h></h1><h1 id="define-OVERFLOW-2"><a href="#define-OVERFLOW-2" class="headerlink" title="define OVERFLOW -2"></a>define OVERFLOW -2</h1><h1 id="define-TURE-1"><a href="#define-TURE-1" class="headerlink" title="define TURE 1"></a>define TURE 1</h1><h1 id="define-FLASE-0"><a href="#define-FLASE-0" class="headerlink" title="define FLASE 0"></a>define FLASE 0</h1><h1 id="define-OK-1"><a href="#define-OK-1" class="headerlink" title="define OK 1"></a>define OK 1</h1><h1 id="define-ERROR-0"><a href="#define-ERROR-0" class="headerlink" title="define ERROR 0"></a>define ERROR 0</h1><h1 id="define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量"><a href="#define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量" class="headerlink" title="define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量"></a>define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量</h1><h1 id="define-LIST-INCREMENT-2"><a href="#define-LIST-INCREMENT-2" class="headerlink" title="define LIST_INCREMENT 2"></a>define LIST_INCREMENT 2</h1><p>typedef int ElemType;    //分号不能丢<br>typedef int Status; </p>
+<p>#include <stdio.h></stdio.h></p>
+<p>#include <stdlib.h>   //包含了exit函数 </stdlib.h></p>
+<p>#define OVERFLOW -2 </p>
+<p>#define TURE 1</p>
+<p>#define FLASE 0</p>
+<p>#define OK 1</p>
+<p>#define ERROR 0</p>
+<p>#define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量 </p>
+<p>#define LIST_INCREMENT 2<br>typedef int ElemType;    //分号不能丢<br>typedef int Status; </p>
 <p>void print1(ElemType a);<br>Status ListInsert(struct Sqlist &amp;L, ElemType a, ElemType j);<br>void ListTraverse(Sqlist &amp;L, void(* print1)(ElemType ));<br>void InitList(Sqlist &amp;L);<br>void MergeList(Sqlist La, Sqlist Lb, Sqlist &amp;Lc);</p>
 <p>struct Sqlist<br>{<br>    ElemType * elem; //储存空间基址<br>    int length;  //当前长度<br>    int listsize;   //当前分配的存储容量，以sizeof（ElemType）为单位<br>};</p>
 <p>int main(void)<br>{<br>    Sqlist La, Lb, Lc;<br>    int j;<br>    InitList(La);  //创建空表La<br>    for(j = 1; j &lt;= 5; j++)<br>    {<br>        ListInsert(La, j, j);    //在表中插入5个元素依次为1，2，3，4，5<br>    }<br>    printf(“La = “);<br>    ListTraverse(La, print1);  //对每个元素调用print1函数输出La的值     </p>
@@ -547,17 +555,8 @@ else
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -630,22 +629,6 @@ else
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#include"><span class="nav-number">1.</span> <span class="nav-text">include </span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#include-包含了exit函数"><span class="nav-number">2.</span> <span class="nav-text">include    //包含了exit函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-OVERFLOW-2"><span class="nav-number">3.</span> <span class="nav-text">define OVERFLOW -2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-TURE-1"><span class="nav-number">4.</span> <span class="nav-text">define TURE 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-FLASE-0"><span class="nav-number">5.</span> <span class="nav-text">define FLASE 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-OK-1"><span class="nav-number">6.</span> <span class="nav-text">define OK 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-ERROR-0"><span class="nav-number">7.</span> <span class="nav-text">define ERROR 0</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-LIST-INIT-SIZE-10-线性表存储空间的初始分配量"><span class="nav-number">8.</span> <span class="nav-text">define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define-LIST-INCREMENT-2"><span class="nav-number">9.</span> <span class="nav-text">define LIST_INCREMENT 2</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
