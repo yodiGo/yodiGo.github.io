@@ -105,7 +105,7 @@
 <meta property="og:url" content="https://wentuotuo.com/2017/03/20/顺序表函数操作(严蔚敏版)/index.html">
 <meta property="og:site_name" content="yodiGo">
 <meta property="og:description" content="实现线性表多种函数">
-<meta property="og:updated_time" content="2017-03-20T06:36:11.302Z">
+<meta property="og:updated_time" content="2017-03-21T11:16:35.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序表的操作（严蔚敏）">
 <meta name="twitter:description" content="实现线性表多种函数">
@@ -406,7 +406,7 @@
 <p>#define OK 1</p>
 <p>#define ERROR 0</p>
 <p>#define LIST_INIT_SIZE 10   //线性表存储空间的初始分配量 </p>
-<p>#define LIST_INCREMENT 2<br>typedef int ElemType;<br>typedef int Status;  //定义结构体 </p>
+<p>#define LIST_INCREMENT 2<br>typedef int ElemType;<br>typedef int Status;  </p>
 <p>Status ListInsert(struct Sqlist &amp;L, int a, ElemType j);<br>void InitList(Sqlist &amp;L);<br>void print1(ElemType m);<br>void ListTraverse(struct Sqlist L, void (<em> print1)(ElemType ));  // 对表L中每个元素调用print1<br>Status ListEmpty(Sqlist L);<br>void ClearList(Sqlist &amp;L);<br>Status GetElem(Sqlist &amp;L, int i, ElemType &amp;e);<br>Status LocateElem(Sqlist L, ElemType e, Status (</em> equal)(ElemType ,ElemType));<br>Status equal(ElemType ,ElemType );<br>Status PriorElem(Sqlist L,ElemType k,ElemType &amp;t);<br>int ListLength (Sqlist L);<br>Status NextElem (Sqlist L, ElemType cur_e, ElemType &amp;next_e);<br>Status ListDelete(Sqlist &amp;L, int i, ElemType &amp;e);<br>void DestroyList(Sqlist &amp;L);<br>void db1(ElemType &amp;c);<br>void ListTraverse2(struct Sqlist L, void (* db1)(ElemType &amp;));</p>
 <p>struct Sqlist<br>{<br>    ElemType * elem; //储存空间基址<br>    int length;  //当前长度<br>    int listsize;   //当前分配的存储容量，以sizeof（ElemType）为单位<br>}; </p>
 <p>int main (void)<br>{<br>    struct Sqlist L;<br>    ElemType e, e0;<br>    Status i;    //等价于int i；<br>    int k, j;<br>    InitList(L);<br>    printf(“初始化L后，L.length = %d,L.listsize = %d,L.elem = %u\n”,L.length ,L.listsize, L.elem);   //%u是输入输出格式说明符,表示按unsigned int格式输入或输出数据<br>    for(j=1; j&lt;=5; j++)<br>        i = ListInsert(L, 1 ,j);  //在L的表头插入j<br>    printf(“在L的表头依次插入1~5后，<em>L.elem = “);<br>    for(j = 1; j &lt;= 5; j++)<br>        printf(“%d”,</em>(L.elem+j-1));  //依次输出表L中的元素<br>    printf(“\n调用ListTraverse()函数，依次输出表L中的元素：”);<br>    ListTraverse(L, print1);  //依次对表L中的元素调用print1函数（输出元素值） //  没有改变线性表L里的属性值，不必传指针类型，传变量类型即可<br>    i = ListEmpty(L);   //  检测表L是否为空<br>    printf(“L.length = %d,L.listsize = %d(不变),”,L.length, L.listsize);<br>    printf(“L.elem = %u(不变),L是否为空？i = %d\n”,L.elem, i);<br>    ClearList(L);   //清空表L </p>
