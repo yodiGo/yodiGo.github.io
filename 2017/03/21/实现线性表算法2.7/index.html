@@ -105,7 +105,7 @@
 <meta property="og:url" content="https://wentuotuo.com/2017/03/21/实现线性表算法2.7/index.html">
 <meta property="og:site_name" content="yodiGo">
 <meta property="og:description" content="实现线性表算法2.7">
-<meta property="og:updated_time" content="2017-03-21T13:11:03.757Z">
+<meta property="og:updated_time" content="2017-03-21T13:14:59.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="顺序表的操作2 实现算法2.7（严蔚敏）">
 <meta name="twitter:description" content="实现线性表算法2.7">
@@ -397,7 +397,7 @@
       
         <p><strong>实现线性表算法2.7</strong></p>
 <a id="more"></a>
-<p>‘’’c</p>
+<p>```c</p>
 <p>#include <stdio.h></stdio.h></p>
 <p>#include <stdlib.h>   //包含了exit函数 </stdlib.h></p>
 <p>#define OVERFLOW -2 </p>
@@ -447,7 +447,7 @@ return OK;
 <pre><code>pa_last = La.elem + La.length - 1;  //指向最后一个元素 
  pb_last = Lb.elem + Lb.length - 1;
 </code></pre><p> while (pa &lt;= pa_last &amp;&amp; pb &lt;= pb_last )  //表la与表lb均有元素没有被归并<br> {</p>
-<pre><code>if(*pa &lt; *pb)    //表la的冤死不大于表lb的元素 
+<pre><code>if(*pa &lt; *pb)    //表la的元素不大于表lb的元素 
     *pc++ = *pa++; //将pa指向单元的值赋值给pc所指向的单元后，pa与pc分别加1 
 else
     *pc++ = *pb++;
@@ -455,7 +455,7 @@ else
 <pre><code>*pc++ = *pa++;   //插入表lb剩余元素 
 </code></pre><p> while(pb &lt;= pb_last)</p>
 <pre><code>*pc++ = *pb++;
-</code></pre><p>}<br>‘’’</p>
+</code></pre><p>}         </p>
 </li>
 </ol>
 
